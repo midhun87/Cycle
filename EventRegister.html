@@ -184,32 +184,32 @@
 <body>
     <header>
         <div class="container">
-        <center>
-        <div class="container">
-            <svg width="280" height="80" viewBox="0 0 320 100" xmlns="http://www.w3.org/2000/svg">
-  <style>
-    .highlight { font: bold 36px 'Poppins', sans-serif; fill: #ddab15; }
-    .text-white { font: bold 36px 'Poppins', sans-serif; fill: #fff; }
-    .hanger { stroke: #ddab15; stroke-width: 4; fill: none; }
-  </style>
+            <center>
+                <div class="container">
+                    <svg width="280" height="80" viewBox="0 0 320 100" xmlns="http://www.w3.org/2000/svg">
+                        <style>
+                            .highlight { font: bold 36px 'Poppins', sans-serif; fill: #ddab15; }
+                            .text-white { font: bold 36px 'Poppins', sans-serif; fill: #fff; }
+                            .hanger { stroke: #ddab15; stroke-width: 4; fill: none; }
+                        </style>
 
-  <!-- Hanger inside a circular loop -->
-  <circle cx="50" cy="50" r="40" stroke="#ddab15" stroke-width="4" fill="none" />
-  <path d="M30 45 Q50 20, 70 45 L50 70 Z" class="hanger"/>
-  <circle cx="50" cy="35" r="3" fill="#ddab15" />
+                        <circle cx="50" cy="50" r="40" stroke="#ddab15" stroke-width="4" fill="none" />
+                        <path d="M30 45 Q50 20, 70 45 L50 70 Z" class="hanger"/>
+                        <circle cx="50" cy="35" r="3" fill="#ddab15" />
 
-  <!-- Brand Text -->
-  <text x="100" y="60">
-    <tspan class="highlight">Re</tspan>
-    <tspan class="text-white">Wear</tspan>
-  </text>
-</svg></center>
+                        <text x="100" y="60">
+                            <tspan class="highlight">Re</tspan>
+                            <tspan class="text-white">Wear</tspan>
+                        </text>
+                    </svg>
+                </div>
+            </center>
             <h1>Donate an Item</h1>
             <nav>
                 <ul>
                     <li><a href="/Home">Public Feed</a></li>
                     <li><a href="/Event" class="active">Post Item</a></li>
-                     <li><a href="/Submissions.html">My Posts</a></li>
+                    <li><a href="/Submissions.html">My Posts</a></li>
                     <li><a href="#" id="logoutButton">Logout</a></li>
                 </ul>
             </nav>
@@ -255,31 +255,34 @@
     </main>
 
     <footer>
-    <div class="container">
-        <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
-            <svg width="180" height="40" viewBox="0 0 420 100" xmlns="http://www.w3.org/2000/svg">
-                <style>
-                    .highlight { font: bold 36px 'Poppins', sans-serif; fill: #ddab15; }
-                    .text-white { font: bold 36px 'Poppins', sans-serif; fill: #fff; }
-                    .hanger { stroke: #ddab15; stroke-width: 4; fill: none; }
-                </style>
-                <!-- Hanger inside a circular loop -->
-                <circle cx="50" cy="50" r="40" stroke="#ddab15" stroke-width="4" fill="none" />
-                <path d="M30 45 Q50 20, 70 45 L50 70 Z" class="hanger"/>
-                <circle cx="50" cy="35" r="3" fill="#ddab15" />
-                <!-- Brand Text -->
-                <text x="100" y="60">
-                    <tspan class="highlight">Re</tspan>
-                    <tspan class="text-white">Wear</tspan>
-                </text>
-            </svg>
-            <p>&copy; 2025 ReWear. All rights reserved.</p>
+        <div class="container">
+            <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                <svg width="180" height="40" viewBox="0 0 420 100" xmlns="http://www.w3.org/2000/svg">
+                    <style>
+                        .highlight { font: bold 36px 'Poppins', sans-serif; fill: #ddab15; }
+                        .text-white { font: bold 36px 'Poppins', sans-serif; fill: #fff; }
+                        .hanger { stroke: #ddab15; stroke-width: 4; fill: none; }
+                    </style>
+                    <circle cx="50" cy="50" r="40" stroke="#ddab15" stroke-width="4" fill="none" />
+                    <path d="M30 45 Q50 20, 70 45 L50 70 Z" class="hanger"/>
+                    <circle cx="50" cy="35" r="3" fill="#ddab15" />
+                    <text x="100" y="60">
+                        <tspan class="highlight">Re</tspan>
+                        <tspan class="text-white">Wear</tspan>
+                    </text>
+                </svg>
+                <p>&copy; 2025 ReWear. All rights reserved.</p>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
     <script>
-        // IMPORTANT: Replace with your deployed backend URL
-        const API_BASE_URL = 'http://localhost:5000'; // Example: 'http://YOUR_EC2_PUBLIC_IP:5000' or 'https://api.yourdomain.com'
+        // Dynamically determine the API_BASE_URL
+        // This will be 'http://localhost:5000' during local development
+        // and 'http://YOUR_AWS_INSTANCE_IP:5000' or 'https://your.custom.domain:5000' when deployed.
+        // It uses window.location.protocol to get 'http:' or 'https:'
+        // and window.location.hostname to get 'localhost' or your domain/IP.
+        // We still assume the backend is running on port 5000.
+        const API_BASE_URL = `${window.location.protocol}//${window.location.hostname}:5000`;
 
         document.addEventListener('DOMContentLoaded', async () => {
             // Optional: You might want to validate user on this page too,
