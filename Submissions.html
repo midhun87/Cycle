@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Submissions - ReWear</title>
-    <link rel="stylesheet" href="/static/style.css" />
     <style>
         /* General Body and Container Styles - Keep existing for submission content */
         body {
@@ -261,34 +260,35 @@
 <body>
     <header>
         <div class="container">
-                    <center>
-        <div class="container">
-            <svg width="280" height="80" viewBox="0 0 320 100" xmlns="http://www.w3.org/2000/svg">
-  <style>
-    .highlight { font: bold 36px 'Poppins', sans-serif; fill: #ddab15; }
-    .text-white { font: bold 36px 'Poppins', sans-serif; fill: #141414; }
-    .hanger { stroke: #ddab15; stroke-width: 4; fill: none; }
-  </style>
+            <center>
+            <div class="container">
+                <svg width="280" height="80" viewBox="0 0 320 100" xmlns="http://www.w3.org/2000/svg">
+                    <style>
+                        .highlight { font: bold 36px 'Poppins', sans-serif; fill: #ddab15; }
+                        .text-white { font: bold 36px 'Poppins', sans-serif; fill: #141414; }
+                        .hanger { stroke: #ddab15; stroke-width: 4; fill: none; }
+                    </style>
 
-  <!-- Hanger inside a circular loop -->
-  <circle cx="50" cy="50" r="40" stroke="#ddab15" stroke-width="4" fill="none" />
-  <path d="M30 45 Q50 20, 70 45 L50 70 Z" class="hanger"/>
-  <circle cx="50" cy="35" r="3" fill="#ddab15" />
+                    <circle cx="50" cy="50" r="40" stroke="#ddab15" stroke-width="4" fill="none" />
+                    <path d="M30 45 Q50 20, 70 45 L50 70 Z" class="hanger"/>
+                    <circle cx="50" cy="35" r="3" fill="#ddab15" />
 
-  <!-- Brand Text -->
-  <text x="100" y="60">
-    <tspan class="highlight">Re</tspan>
-    <tspan class="text-white">Wear</tspan>
-  </text>
-</svg>
-            <h1 id="welcomeUser">Welcome, Guest!</h1> <nav>
-                <ul>
-                    <li><a href="/Home">Public Feed</a></li>
-                    <li><a href="/Event">Post Item</a></li>
-                    <li><a href="/Submissions.html" class="active">My Posts</a></li>
-                    <li><a href="#" id="logoutButton">Logout</a></li>
-                </ul>
-            </nav>
+                    <text x="100" y="60">
+                        <tspan class="highlight">Re</tspan>
+                        <tspan class="text-white">Wear</tspan>
+                    </text>
+                </svg>
+                <h1 id="welcomeUser">Welcome, Guest!</h1>
+                <nav>
+                    <ul>
+                        <li><a href="/Home">Public Feed</a></li>
+                        <li><a href="/Event">Post Item</a></li>
+                        <li><a href="/Submissions.html" class="active">My Posts</a></li>
+                        <li><a href="#" id="logoutButton">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </center>
         </div>
     </header>
 
@@ -299,29 +299,27 @@
         </div>
     </main>
 
-  <footer>
-    <div class="container">
-        <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
-            <svg width="180" height="40" viewBox="0 0 420 100" xmlns="http://www.w3.org/2000/svg">
-                <style>
-                    .highlight { font: bold 36px 'Poppins', sans-serif; fill: #ddab15; }
-                    .text-white { font: bold 36px 'Poppins', sans-serif; fill: #0d0d0d; }
-                    .hanger { stroke: #ddab15; stroke-width: 4; fill: none; }
-                </style>
-                <!-- Hanger inside a circular loop -->
-                <circle cx="50" cy="50" r="40" stroke="#ddab15" stroke-width="4" fill="none" />
-                <path d="M30 45 Q50 20, 70 45 L50 70 Z" class="hanger"/>
-                <circle cx="50" cy="35" r="3" fill="#ddab15" />
-                <!-- Brand Text -->
-                <text x="100" y="60">
-                    <tspan class="highlight">Re</tspan>
-                    <tspan class="text-white">Wear</tspan>
-                </text>
-            </svg>
-            <p>&copy; 2025 ReWear. All rights reserved.</p>
+    <footer>
+        <div class="container">
+            <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                <svg width="180" height="40" viewBox="0 0 420 100" xmlns="http://www.w3.org/2000/svg">
+                    <style>
+                        .highlight { font: bold 36px 'Poppins', sans-serif; fill: #ddab15; }
+                        .text-white { font: bold 36px 'Poppins', sans-serif; fill: #0d0d0d; }
+                        .hanger { stroke: #ddab15; stroke-width: 4; fill: none; }
+                    </style>
+                    <circle cx="50" cy="50" r="40" stroke="#ddab15" stroke-width="4" fill="none" />
+                    <path d="M30 45 Q50 20, 70 45 L50 70 Z" class="hanger"/>
+                    <circle cx="50" cy="35" r="3" fill="#ddab15" />
+                    <text x="100" y="60">
+                        <tspan class="highlight">Re</tspan>
+                        <tspan class="text-white">Wear</tspan>
+                    </text>
+                </svg>
+                <p>&copy; 2025 ReWear. All rights reserved.</p>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
     <template id="claim-item-template">
         <div class="claim-item">
@@ -341,21 +339,24 @@
     </template>
 
     <script>
-        const API_BASE_URL = 'http://localhost:5000'; // IMPORTANT: Update this for deployment
-        let currentUserId = null; // Declare globally as in userhome.html
+        // Dynamically determine the API_BASE_URL
+        // This will be 'http://localhost:5000' during local development
+        // and the actual host (e.g., your AWS EC2 public IP or domain) when deployed.
+        const API_BASE_URL = `${window.location.protocol}//${window.location.hostname}:5000`; // Assuming your backend runs on port 5000 on the same host
+
+
+        let currentUserId = null;
 
         document.addEventListener('DOMContentLoaded', async () => {
-            await validateAndDisplayUser(); // Call this to populate welcome message and currentUserId
+            await validateAndDisplayUser();
             await fetchMySubmissionsAndClaims();
         });
 
-        // Add logout functionality
         document.getElementById('logoutButton').addEventListener('click', () => {
             localStorage.removeItem('jwtToken');
             window.location.href = '/Login';
         });
 
-        // Function to validate user and display name (copied from userhome.html)
         async function validateAndDisplayUser() {
             const token = localStorage.getItem('jwtToken');
             const welcomeUserElement = document.getElementById('welcomeUser');
@@ -378,8 +379,7 @@
                 const data = await response.json();
 
                 if (response.ok) {
-                    // Check if data.name exists, otherwise it will show "undefined"
-                    welcomeUserElement.textContent = `Welcome, ${data.name || 'User'}!`; // Added fallback for undefined name
+                    welcomeUserElement.textContent = `Welcome, ${data.name || 'User'}!`;
                     currentUserId = data.userId;
                 } else {
                     console.error('Token validation failed:', data.message);
@@ -400,9 +400,8 @@
         }
 
         async function fetchMySubmissionsAndClaims() {
-            const token = localStorage.getItem('jwtToken'); // Get token here as well
+            const token = localStorage.getItem('jwtToken');
             if (!token) {
-                // This case is already handled by validateAndDisplayUser, but good to have a fallback
                 alert('You must be logged in to view your submissions. Redirecting to login.');
                 window.location.href = '/Login';
                 return;
@@ -426,7 +425,7 @@
 
                 const donationsWithClaims = await response.json();
                 const submissionsContainer = document.getElementById('submissions-container');
-                submissionsContainer.innerHTML = ''; // Clear loading message
+                submissionsContainer.innerHTML = '';
 
                 if (donationsWithClaims.length === 0) {
                     submissionsContainer.innerHTML = '<p>You have not made any donations yet.</p>';
@@ -436,7 +435,6 @@
                 const submissionsGrid = document.createElement('div');
                 submissionsGrid.className = 'submissions-grid';
                 submissionsContainer.appendChild(submissionsGrid);
-
 
                 donationsWithClaims.forEach(donation => {
                     const donationCard = document.createElement('div');
@@ -451,7 +449,7 @@
                         ${donation.imageData ? `<img src="data:${donation.imageMimeType};base64,${donation.imageData}" alt="${donation.title}">` : ''}
                         <h4>Claims for this Donation:</h4>
                         <div class="claims-for-this-donation" id="claims-for-donation-${donation.donationId}">
-                            </div>
+                        </div>
                         `;
                     submissionsGrid.appendChild(donationCard);
 
@@ -470,7 +468,6 @@
                             clone.querySelector('.claim-reason').textContent = claim.reasonForClaim;
                             clone.querySelector('.claimed-at').textContent = new Date(claim.claimedAt).toLocaleString();
 
-                            // Set claim status badge
                             const claimStatusBadge = clone.querySelector('.claim-status-badge');
                             claimStatusBadge.textContent = claim.claimStatus.charAt(0).toUpperCase() + claim.claimStatus.slice(1);
                             claimStatusBadge.classList.add(claim.claimStatus);
@@ -489,7 +486,6 @@
                                 rejectBtn.addEventListener('click', () => handleClaimAction(claim.claimId, donation.donationId, 'rejected'));
                             }
 
-                            // Hide buttons if claim is not pending
                             if (claim.claimStatus !== 'pending') {
                                 if (acceptBtn) acceptBtn.style.display = 'none';
                                 if (rejectBtn) rejectBtn.style.display = 'none';
@@ -513,7 +509,7 @@
                 return;
             }
 
-            const token = localStorage.getItem('jwtToken'); // Get token here as well
+            const token = localStorage.getItem('jwtToken');
 
             try {
                 const response = await fetch(`${API_BASE_URL}/api/claims/${action}`, {
@@ -527,7 +523,6 @@
 
                 if (response.ok) {
                     alert(`Claim ${action} successfully!`);
-                    // Reload submissions to reflect changes
                     await fetchMySubmissionsAndClaims();
                 } else {
                     const errorData = await response.json();
