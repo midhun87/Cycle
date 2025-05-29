@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ReWear-User</title>
-    <link rel="stylesheet" href="/static/style.css">
     <style>
         /* General Body and Container Styles */
         body {
@@ -305,24 +304,22 @@
         <center>
         <div class="container">
             <svg width="280" height="80" viewBox="0 0 320 100" xmlns="http://www.w3.org/2000/svg">
-  <style>
-    .highlight { font: bold 36px 'Poppins', sans-serif; fill: #ddab15; }
-    .text-white { font: bold 36px 'Poppins', sans-serif; fill: #fff; }
-    .hanger { stroke: #ddab15; stroke-width: 4; fill: none; }
-  </style>
+                <style>
+                    .highlight { font: bold 36px 'Poppins', sans-serif; fill: #ddab15; }
+                    .text-white { font: bold 36px 'Poppins', sans-serif; fill: #fff; }
+                    .hanger { stroke: #ddab15; stroke-width: 4; fill: none; }
+                </style>
 
-  <!-- Hanger inside a circular loop -->
-  <circle cx="50" cy="50" r="40" stroke="#ddab15" stroke-width="4" fill="none" />
-  <path d="M30 45 Q50 20, 70 45 L50 70 Z" class="hanger"/>
-  <circle cx="50" cy="35" r="3" fill="#ddab15" />
+                <circle cx="50" cy="50" r="40" stroke="#ddab15" stroke-width="4" fill="none" />
+                <path d="M30 45 Q50 20, 70 45 L50 70 Z" class="hanger"/>
+                <circle cx="50" cy="35" r="3" fill="#ddab15" />
 
-  <!-- Brand Text -->
-  <text x="100" y="60">
-    <tspan class="highlight">Re</tspan>
-    <tspan class="text-white">Wear</tspan>
-  </text>
-</svg>
-</center>
+                <text x="100" y="60">
+                    <tspan class="highlight">Re</tspan>
+                    <tspan class="text-white">Wear</tspan>
+                </text>
+            </svg>
+        </center>
             <h1 id="welcomeUser">Welcome, Guest!</h1>
             <nav>
                 <ul>
@@ -353,11 +350,9 @@
                     .text-white { font: bold 36px 'Poppins', sans-serif; fill: #fff; }
                     .hanger { stroke: #ddab15; stroke-width: 4; fill: none; }
                 </style>
-                <!-- Hanger inside a circular loop -->
                 <circle cx="50" cy="50" r="40" stroke="#ddab15" stroke-width="4" fill="none" />
                 <path d="M30 45 Q50 20, 70 45 L50 70 Z" class="hanger"/>
                 <circle cx="50" cy="35" r="3" fill="#ddab15" />
-                <!-- Brand Text -->
                 <text x="100" y="60">
                     <tspan class="highlight">Re</tspan>
                     <tspan class="text-white">Wear</tspan>
@@ -369,8 +364,9 @@
 </footer>
 
     <script>
-        // IMPORTANT: Replace with your deployed backend URL
-        const API_BASE_URL = 'http://localhost:5000'; // Example: 'http://YOUR_EC2_PUBLIC_IP:5000' or 'https://api.yourdomain.com'
+        // API_BASE_URL constant is removed.
+        // Fetch calls will now use relative paths, automatically
+        // pointing to the same server that served this HTML file.
 
         let currentUserId = null; // Store the logged-in user's ID globally
 
@@ -381,7 +377,7 @@
 
         document.getElementById('logoutButton').addEventListener('click', () => {
             localStorage.removeItem('jwtToken');
-            window.location.href = '/Login';
+            window.location.href = '/Login'; // Redirect to login page
         });
 
         async function validateAndDisplayUser() {
@@ -398,7 +394,8 @@
             }
 
             try {
-                const response = await fetch(`${API_BASE_URL}/valid`, {
+                // Using relative path for the /valid endpoint
+                const response = await fetch(`/valid`, {
                     method: 'POST',
                     headers: {
                         'Authorization': `Bearer ${token}` // IMPORTANT: Send the token
@@ -407,7 +404,8 @@
                 const data = await response.json();
 
                 if (response.ok) {
-                    welcomeUserElement.textContent = `Welcome, ${data.name}!`; // This is where the username is displayed
+                    // Check if 'name' exists in data, otherwise use email or default
+                    welcomeUserElement.textContent = `Welcome, ${data.name || data.email || 'User'}!`;
                     currentUserId = data.userId; // Store the user ID
                 } else {
                     console.error('Token validation failed:', data.message);
@@ -432,7 +430,8 @@
             donationsList.innerHTML = '<p>Loading donations...</p>'; // Clear previous and show loading
 
             try {
-                const response = await fetch(`${API_BASE_URL}/api/posts`); // Public feed does NOT need token here
+                // Using relative path for the /api/posts endpoint
+                const response = await fetch(`/api/posts`); // Public feed does NOT need token here
                 const donations = await response.json();
 
                 if (response.ok) {
