@@ -207,8 +207,9 @@ footer {
     </footer>
 
     <script>
-        // API_BASE_URL updated with your EC2 Public IP
-        const API_BASE_URL = 'http://3.110.124.178:5000'; 
+        // No explicit API_BASE_URL constant needed if frontend and backend are served from the same origin.
+        // The fetch call will now use a relative path, meaning it will attempt to connect
+        // to the /login endpoint on the same host and port that served this Login.html file.
 
         document.getElementById('loginForm').addEventListener('submit', async function(event) {
             event.preventDefault();
@@ -218,7 +219,8 @@ footer {
             const messageElement = document.getElementById('loginMessage');
 
             try {
-                const response = await fetch(`${API_BASE_URL}/login`, {
+                // Using a relative path: '/login'
+                const response = await fetch(`/login`, { 
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
